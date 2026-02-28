@@ -124,3 +124,16 @@ res_col2.metric("熱回收實際獲得熱量", f"{Q_cold_gained:.1f} kW", help="
 res_col3.metric("實測換熱器效能 (ε)", f"{actual_epsilon*100:.1f} %", delta=f"與左側設定差異: {(actual_epsilon - epsilon_setting)*100:.1f} %", delta_color="off")
 
 st.caption("💡 研發夥伴提示：在理想狀態下，電解側失去的熱量應該接近熱回收獲得的熱量。如果兩者落差很大，代表熱交換器或管路有嚴重的環境散熱。此外，您可以將算出的『實測效能』更新到左側的滑桿中，讓下一次的預測更精準！")
+
+st.markdown("---")
+st.header("📖 系統操作手冊")
+
+# 使用折疊面板，讓畫面保持乾淨
+with st.expander("點擊展開查看 AEM 熱管理模型操作手冊與公式"):
+    try:
+        # 讀取同一資料夾下的 README.md 檔案
+        with open("README.md", "r", encoding="utf-8") as f:
+            readme_text = f.read()
+            st.markdown(readme_text)
+    except FileNotFoundError:
+        st.warning("找不到 README.md 檔案，請確認檔案已上傳。")
